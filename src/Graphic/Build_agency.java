@@ -30,7 +30,7 @@ import javax.swing.text.DocumentFilter;
 public class Build_agency extends JFrame {
     private JPanel NORTH_PANEL,EAST_PANEL,WEST_PANEL,SOUTH_PANEL,CENTER_PANEL,dtpanel;
     private JTextField modelText,maxS_Text,maxP_Text,avfut_Text,flagt_Text,avlit_Text,pwr_Text,wheel_Text;
-    private JButton jeep_button,tgly_button,sgly_button,bicy_button,amph_button,crui_button,frig_button,startBUT,Exit_but,backToPickVehicle,Add_butt,Rbutt,Cbutt,BuyButt,BuyButt2,Ebicy_button,AirPlane_button;
+    private JButton jeep_button,tgly_button,sgly_button,bicy_button,amph_button,crui_button,frig_button,startBUT,Exit_but,backToPickVehicle,Add_butt,Rbutt,Cbutt,BuyButt,BuyButt2,Ebicy_button,AirPlane_button,inventoryBut;
     private JButton flag1,flag2,flag3,flag4,flag5,flag6,flag7;
     private JRadioButton IMAGE_RADIO_b1,IMAGE_RADIO_b2;
     private Font bt_font = new Font("Calibri",Font.BOLD,15);;
@@ -44,10 +44,12 @@ public class Build_agency extends JFrame {
     private JButton FinishBut;
     private JScrollPane scrollPane;
     private ImageIcon repaired;
-    private int Choice,real_index,our_index,flag=0;
+    private int Choice,real_index,our_index,flag=0,flagInventory=0;
     private Font Title_font=new Font("Calibri",Font.BOLD,50);
     Border border= BorderFactory.createLineBorder(Color.cyan,5);;
     boolean x;
+    private Myframe inventoryFrame;
+
     private ImageIcon my_icon, my_icon2, my_icon3, my_icon4, my_icon5, my_icon6, my_icon7;
 
 
@@ -82,17 +84,17 @@ public class Build_agency extends JFrame {
 
 
         NORTH_PANEL.setPreferredSize(new Dimension(70,120));
-        NORTH_PANEL.setBackground(new Color(0, 33, 117, 255));
+        NORTH_PANEL.setBackground(new Color(0, 67, 105, 255));
         //NORTH_PANEL.setLayout(null);//////////
 
 
         CENTER_PANEL.setPreferredSize(new Dimension(100,80));
-        CENTER_PANEL.setBackground(new Color(0, 67, 105, 255));
+        CENTER_PANEL.setBackground(new Color(1, 36, 47, 255));
         CENTER_PANEL.setLayout(null);
 
 
         SOUTH_PANEL.setPreferredSize(new Dimension(50,100));
-        SOUTH_PANEL.setBackground(new Color(0, 33, 117, 255));
+        SOUTH_PANEL.setBackground(new Color(0, 67, 105, 255));
         SOUTH_PANEL.setLayout(null);
 
         border= BorderFactory.createLineBorder(Color.cyan,5);
@@ -133,16 +135,16 @@ public class Build_agency extends JFrame {
 
 
         ImageIcon myicon=new ImageIcon("familyEnter.jpg");
-        Image scaled=myicon.getImage().getScaledInstance(350,350,Image.SCALE_SMOOTH);
+        Image scaled=myicon.getImage().getScaledInstance(280,270,Image.SCALE_SMOOTH);
 
 
 
         JLabel background_photolabel= new JLabel();
         background_photolabel=new JLabel(new ImageIcon(scaled));
-        background_photolabel.setForeground(new Color(134, 0, 255, 139));
+        //background_photolabel.setForeground(new Color(134, 0, 255, 139));
 
-        background_photolabel.setBounds(30,-75,600,600);
-        background_photolabel.setBorder(BorderFactory.createLineBorder(new Color(0, 157, 255, 255),100));
+        background_photolabel.setBounds(50,-75,550,550);
+        background_photolabel.setBorder(BorderFactory.createLineBorder(new Color(93, 173, 164, 255),100));
         CENTER_PANEL.add(background_photolabel);
 
 
@@ -181,69 +183,48 @@ public class Build_agency extends JFrame {
      */
     public void pick_vehicleMenu(){
 
-
-
-
-
-
-
         RemovePanel();
-
-
-
-        //Build_agency My_agency_object=new Build_agency();
-
-
-
-        //My_agency_object.remove(CENTER_PANEL);
-
-        //My_agency_object.RemovePanel();
-        //My_agency_object.pick_vehicleMenu();
-        //My_agency_object.RemovePanel();
-
-
-
-        //myframe2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //myframe2.setResizable(false);
-        //myframe2.setSize(700,700);
-        //myframe2.setLocationRelativeTo(null);
-
-
-
-
 
         show_First_back_Butt();
 
         FinishBut.setEnabled(true);
         //////////////My_agency_object.FinishBut.setEnabled(true);
 
-
-
-
         show_firstTitle();
         startBUT.setVisible(false);
 
         CENTER_PANEL = new JPanel();
-        CENTER_PANEL.setBackground(new Color(17, 19, 138, 255));
+        CENTER_PANEL.setBackground(new Color(22, 77, 101, 255));
         CENTER_PANEL.setLayout(new GridLayout(2,2,10,10));
 
 
 
         jeep_button=new JButton();
         ImageIcon jeepIcon2 = new ImageIcon(getClass().getResource("myPic/jeep2.jpeg"));
-        Image img = jeepIcon2.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        Image img = jeepIcon2.getImage().getScaledInstance(135, 187, Image.SCALE_SMOOTH);
         jeepIcon2 = new ImageIcon(img);
         jeep_button.setIcon(jeepIcon2);
+        jeep_button.setText("Jeep");
+        jeep_button.setHorizontalTextPosition(JButton.CENTER);
+        jeep_button.setVerticalTextPosition(JButton.NORTH);
+        jeep_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         jeep_button.addActionListener(e->createJepp_panel());
         CENTER_PANEL.add(jeep_button);
 
-        sgly_button=new JButton("SpyGlider");
+
+
+
+        sgly_button=new JButton();
+        sgly_button.setText("SpyGlider");
         ImageIcon spyGIcon2 = new ImageIcon(getClass().getResource("myPic/spyGlider3_new.jpg"));
-        img = spyGIcon2.getImage().getScaledInstance(135, 170, Image.SCALE_SMOOTH);
+        img = spyGIcon2.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         spyGIcon2 = new ImageIcon(img);
-        sgly_button.setVerticalTextPosition(JLabel.CENTER);
+        //sgly_button.setVerticalTextPosition(JLabel.CENTER);
         //sgly_button.setHorizontalTextPosition(JLabel.TOP);
         sgly_button.setIcon(spyGIcon2);
+        sgly_button.setHorizontalTextPosition(JButton.CENTER);
+        sgly_button.setVerticalTextPosition(JButton.NORTH);
+        sgly_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         sgly_button.addActionListener(e->createSpyG_panel());
         CENTER_PANEL.add(sgly_button);
 
@@ -252,27 +233,43 @@ public class Build_agency extends JFrame {
 
         bicy_button=new JButton();
         ImageIcon ByclIcon1 = new ImageIcon(getClass().getResource("myPic/bicy3.jpg"));
-        img = ByclIcon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = ByclIcon1.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         ByclIcon1 = new ImageIcon(img);
         bicy_button.setIcon(ByclIcon1);
+        bicy_button.setText("Bicycle");
+        bicy_button.setHorizontalTextPosition(JButton.CENTER);
+        bicy_button.setVerticalTextPosition(JButton.NORTH);
+        bicy_button.setFont(new Font("Comic Sans",Font.BOLD,17));
+
+
         bicy_button.addActionListener(e->createByce_panel());
         CENTER_PANEL.add(bicy_button);
 
 
         Ebicy_button=new JButton();
         ImageIcon ElecByclIcon1 = new ImageIcon(getClass().getResource("myPic/Ebicycle1.jpg"));
-        img = ElecByclIcon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = ElecByclIcon1.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         ElecByclIcon1 = new ImageIcon(img);
         Ebicy_button.setIcon(ElecByclIcon1);
+        Ebicy_button.setText("E-Bicycle");
+        Ebicy_button.setHorizontalTextPosition(JButton.CENTER);
+        Ebicy_button.setVerticalTextPosition(JButton.NORTH);
+        Ebicy_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         Ebicy_button.addActionListener(e->createElectricByce_panel());
         CENTER_PANEL.add(Ebicy_button);
 
 
         amph_button=new JButton();
         ImageIcon ampIcon1 = new ImageIcon(getClass().getResource("myPic/amphibious2.jpg"));
-        img = ampIcon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = ampIcon1.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         ampIcon1 = new ImageIcon(img);
         amph_button.setIcon(ampIcon1);
+        amph_button.setText("Amphibious");
+        amph_button.setHorizontalTextPosition(JButton.CENTER);
+        amph_button.setVerticalTextPosition(JButton.NORTH);
+        amph_button.setFont(new Font("Comic Sans",Font.BOLD,17));
+
+
         amph_button.addActionListener(e->createAmphi_panel());
         CENTER_PANEL.add(amph_button);
 
@@ -280,18 +277,27 @@ public class Build_agency extends JFrame {
 
         crui_button=new JButton();
         ImageIcon crusIcon2 = new ImageIcon(getClass().getResource("myPic/cru1.jpg"));
-        img = crusIcon2.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = crusIcon2.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         crusIcon2 = new ImageIcon(img);
         crui_button.setIcon(crusIcon2);
+        crui_button.setText("Cruise");
+        crui_button.setHorizontalTextPosition(JButton.CENTER);
+        crui_button.setVerticalTextPosition(JButton.NORTH);
+        crui_button.setFont(new Font("Comic Sans",Font.BOLD,17));
+
         crui_button.addActionListener(e->createCru_panel());
         CENTER_PANEL.add(crui_button);
 
 
         frig_button=new JButton();
         ImageIcon frigacon1 = new ImageIcon(getClass().getResource("myPic/frigate2.jpg"));
-        img = frigacon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = frigacon1.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         frigacon1 = new ImageIcon(img);
         frig_button.setIcon(frigacon1);
+        frig_button.setText("Frigate");
+        frig_button.setHorizontalTextPosition(JButton.CENTER);
+        frig_button.setVerticalTextPosition(JButton.NORTH);
+        frig_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         frig_button.addActionListener(e->createFri_panel());
         CENTER_PANEL.add(frig_button);
 
@@ -299,69 +305,40 @@ public class Build_agency extends JFrame {
 
         tgly_button=new JButton("ToyGlider");
         ImageIcon toyIcon1 = new ImageIcon(getClass().getResource("myPic/Toyglider3.jpg"));
-        img = toyIcon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = toyIcon1.getImage().getScaledInstance(135, 185, Image.SCALE_SMOOTH);
         toyIcon1 = new ImageIcon(img);
         tgly_button.setIcon(toyIcon1);
+
+        tgly_button.setText("ToyGlider");
+        tgly_button.setHorizontalTextPosition(JButton.CENTER);
+        tgly_button.setVerticalTextPosition(JButton.NORTH);
+        tgly_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         tgly_button.addActionListener(e->createToyG_panel());
         CENTER_PANEL.add(tgly_button);
 
 
 
-        AirPlane_button=new JButton("AirPlane");
+        AirPlane_button=new JButton();
         ImageIcon AirPlaneIcon1 = new ImageIcon(getClass().getResource("myPic/Airp1.jpg"));
-        img = AirPlaneIcon1.getImage().getScaledInstance(175, 230, Image.SCALE_SMOOTH);
+        img = AirPlaneIcon1.getImage().getScaledInstance(152, 185, Image.SCALE_SMOOTH);
         AirPlaneIcon1 = new ImageIcon(img);
-        //AirPlane_button.setIcon(AirPlaneIcon1);
+        AirPlane_button.setIcon(AirPlaneIcon1);
+
+        AirPlane_button.setText("AirPlane");
+        AirPlane_button.setHorizontalTextPosition(JButton.CENTER);
+        AirPlane_button.setVerticalTextPosition(JButton.NORTH);
+        AirPlane_button.setFont(new Font("Comic Sans",Font.BOLD,17));
         AirPlane_button.addActionListener(e->createAirPlane_panel());
         CENTER_PANEL.add(AirPlane_button);
 
-
-
-
-
-
-
-        //Myframe newframe= new Myframe(NORTH_PANEL,CENTER_PANEL,SOUTH_PANEL);
-        //newframe.frame.setVisible(true);
-        //newframe.frame.add(NORTH_PANEL,BorderLayout.NORTH);
-        //newframe.frame.add(CENTER_PANEL,BorderLayout.CENTER);
-        //newframe.frame.add(SOUTH_PANEL,BorderLayout.SOUTH);
-        //newframe.frame.repaint();
-        //newframe.frame.setVisible(true);
 
         this.add(CENTER_PANEL,BorderLayout.CENTER);
         this.add(NORTH_PANEL,BorderLayout.NORTH);
         this.add(SOUTH_PANEL,BorderLayout.SOUTH);
 
 
-        //myframe2.add(CENTER_PANEL,BorderLayout.CENTER);
-        //myframe2.add(NORTH_PANEL,BorderLayout.NORTH);
-        //myframe2.add(SOUTH_PANEL,BorderLayout.SOUTH);
-        //myframe2.add(panel1,BorderLayout.NORTH);
-        //myframe2.add(panel2,BorderLayout.SOUTH);
-        //myframe2.setVisible(true);
-
         this.repaint();
         this.setVisible(true);
-
-
-
-        //My_agency_object.add(CENTER_PANEL,BorderLayout.CENTER);
-        //My_agency_object.add(NORTH_PANEL,BorderLayout.NORTH);
-        //My_agency_object.add(SOUTH_PANEL,BorderLayout.SOUTH);
-
-
-        //My_agency_object.repaint();
-        //My_agency_object.setVisible(true);
-
-
-
-
-        //myframe2.add(CENTER_PANEL,BorderLayout.CENTER);
-        //myframe2.add(NORTH_PANEL,BorderLayout.NORTH);
-        //myframe2.add(SOUTH_PANEL,BorderLayout.SOUTH);
-        //myframe2.setVisible(true);
-
 
 
     }
@@ -433,9 +410,6 @@ public class Build_agency extends JFrame {
         JButton pic_Button3 = new JButton(icon3);
         pic_Button3.setBounds(500, 320, 120, 100);
         ImageIcon finalIcon3 = icon3;
-
-
-
 
 
 
@@ -693,6 +667,7 @@ public class Build_agency extends JFrame {
         KOTAROT.setFont(Title_font);
         KOTAROT.setForeground(new Color(255,255,255));
         KOTAROT.setBorder(border);
+
         NORTH_PANEL.add(KOTAROT);
     }
 
@@ -1574,7 +1549,41 @@ public class Build_agency extends JFrame {
      Adds the reset button, scrolling panel, and change flag button to the center panel and adds the center panel to the main frame.
      */
     public void show_myAgency(){
+
+
+//        inventoryFrame.getFrame().addFocusListener(new FocusListener() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
+//                System.out.println("focus on inventory");
+//            }
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//
+//            }
+//        });
+
+
         RemovePanel();
+//        if(vehicle_arr.length==0){
+//
+//            JLabel soldLabel=new JLabel();
+//            ImageIcon myIcon = new ImageIcon(getClass().getResource("myPic/jeep2.jpeg"));
+//            Image img = myIcon.getImage().getScaledInstance(135, 187, Image.SCALE_SMOOTH);
+//            myIcon = new ImageIcon(img);
+//            soldLabel.setIcon(myIcon);
+//            jeep_button.setText("Jeep");
+//            jeep_button.setHorizontalTextPosition(JButton.CENTER);
+//            jeep_button.setVerticalTextPosition(JButton.NORTH);
+//            jeep_button.setFont(new Font("Comic Sans",Font.BOLD,17));
+//            jeep_button.addActionListener(e->createJepp_panel());
+//            CENTER_PANEL.add(jeep_button);
+//
+//
+//
+//        }
+
         CENTER_PANEL = new JPanel();
         CENTER_PANEL.setLayout(null);
         CENTER_PANEL.setBounds(0,0,700,700);
@@ -1586,9 +1595,10 @@ public class Build_agency extends JFrame {
         NORTH_PANEL.add(KOTAROT);
 
 
-        Rbutt=new JButton("Reset Traveled Distance");
+        Rbutt=new JButton("Reset Distance");
         Rbutt.setBounds(500,0,180,70);
         Rbutt.setFocusable(false);
+        Rbutt.setFont(new Font("Comic Sans",Font.BOLD,17));
         Rbutt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1617,11 +1627,27 @@ public class Build_agency extends JFrame {
         });
         CENTER_PANEL.add(Rbutt);
 
-        vehicle_scrolling_panel();
 
-        Cbutt=new JButton("Change all flags !");
+        Cbutt=new JButton("Change all flags");
         Cbutt.setBounds(500,75,180,70);
         Cbutt.setFocusable(false);
+        Cbutt.setFont(new Font("Comic Sans",Font.BOLD,17));
+        //Cbutt.setBorder(BorderFactory.createEtchedBorder());
+        Cbutt.addActionListener(e->ChangeFlag());
+        CENTER_PANEL.add(Cbutt);
+
+
+        inventoryBut=new JButton("Show inventory");
+        inventoryBut.setBounds(500,150,180,70);
+        inventoryBut.setFocusable(false);
+        inventoryBut.setFont(new Font("Comic Sans",Font.BOLD,17));
+        //Cbutt.setBorder(BorderFactory.createEtchedBorder());
+        inventoryBut.addActionListener(e->show_inventory());
+        CENTER_PANEL.add(inventoryBut);
+
+        vehicle_scrolling_panel();
+
+
         Flag_arr[0]=new ImageIcon("myPic/aa1.png");
         Flag_arr[1]=new ImageIcon("myPic/aa2.png");
         Flag_arr[2]=new ImageIcon("myPic/aa3.png");
@@ -1629,11 +1655,46 @@ public class Build_agency extends JFrame {
         Flag_arr[4]=new ImageIcon("myPic/aa5.png");
         Flag_arr[5]=new ImageIcon("myPic/aa6.png");
         Flag_arr[6]=new ImageIcon("myPic/aa7.png");
-        Cbutt.addActionListener(e->ChangeFlag());
-        CENTER_PANEL.add(Cbutt);
+
+
         this.add(CENTER_PANEL,BorderLayout.CENTER);
         this.repaint();
         this.setVisible(true);
+    }
+    public void show_inventory(){
+
+        Myframe inventoryFrame=new Myframe();
+        inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
+        flagInventory=1;
+        inventoryFrame.getFrame().addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
+                System.out.println("inventory focus");
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
+            }
+        });
+//        inventoryFrame.getFrame().addFocusListener(new FocusListener() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                //RemovePanel();
+//
+//            }
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//
+//            }
+//        });
+
+
+
+
     }
 
 
@@ -1732,27 +1793,27 @@ public class Build_agency extends JFrame {
 
 
 
+    ////////////our new gui frames methods
+
+
+    ///testdrive
     /**
      The TestDrive method allows the user to test drive a selected vehicle by setting the distance they wish to drive.
      The method displays a form where the user can input the desired distance and click the "Enjoy!" button to set the traveled distance of the vehicle.
      @throws NumberFormatException if the input value is not a valid integer.
      */
-    public void TestDrive()
-    {
+    public void TestDrive(){
         RemovePanel();
         Myframe frame1=new Myframe();
-        frame1.Test_panel(real_index,vehicle_arr,this);
-
-        this.addFocusListener(new FocusListener()
+        frame1.TestDrive_frame(real_index,vehicle_arr);
+        addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
                 show_myAgency();
-                System.out.println("test");
-
+                System.out.println("test drive focus");
             }
-
             @Override
             public void focusLost(FocusEvent e) {
 
@@ -1761,13 +1822,68 @@ public class Build_agency extends JFrame {
 
     }
 
+    public void buyFrame(){
+
+        //RemovePanel();
+        Myframe frame1=new Myframe();
+        frame1.Buy_frame(chosen_icon);
+
+        frame1.Yes_butt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==frame1.Yes_butt){
+                    buyVehicleAndPicture(real_index);
+                    frame1.getFrame().dispose();
+                    //show_myAgency();
+                    addFocusListener(new FocusListener() {
+                        @Override
+                        public void focusGained(FocusEvent e) {
+                            show_myAgency();
+                            System.out.println("Buy_vehicle");
+
+                        }
+
+                        @Override
+                        public void focusLost(FocusEvent e) {
+
+                        }
+                    });{
+
+                    }
+
+                }
+            }
+        });
+
+        frame1.No_butt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==frame1.No_butt){
+                    show_myAgency();
+                    frame1.getFrame().dispose();
+                }
+
+            }
+        });
+
+
+        //JButton pic_Button3 = new JButton(icon3);
+        //pic_Button3.setBounds(500, 320, 120, 100);
+        //ImageIcon finalIcon3 = icon3;
+
+
+
+
+    }
+
+
+
 
     /**
      This method is used to set an action listener for the "BuyButt2" button,
      which opens the "TestDrive" method when clicked.
      */
-    public void ActionTestDrive()
-    {
+    public void ActionTestDrive(){
         BuyButt2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -1780,15 +1896,12 @@ public class Build_agency extends JFrame {
     }
 
 
-
-
     /**
      * This method removes a vehicle from the vehicle array and its corresponding picture from the picture array,
      * based on the index provided as a parameter.
      * If the index is not found, nothing happens.
      */
-    public void buyVehicleAndPicture(int index)
-    {
+    public void buyVehicleAndPicture(int index){
         int j=0;
         Vehicle[] temp1=new Vehicle[vehicle_arr.length-1];
         ImageIcon[] temp_picture_arr=new ImageIcon[picture_arr.length-1];
@@ -1829,12 +1942,10 @@ public class Build_agency extends JFrame {
             picture_arr=temp_picture_arr;
 
 
-            RemovePanel();
-            vehicle_scrolling_panel();
+            //RemovePanel();
+            //vehicle_scrolling_panel();
         }
     }
-
-
 
 
     /**
@@ -1842,20 +1953,24 @@ public class Build_agency extends JFrame {
      * When the button is clicked, the "buyVehicleAndPicture" method is called with the index of the selected vehicle.
      * The "show_myAgency" method is also called to update the UI with the new inventory.
      */
-    public void BuyVehicle()
-    {
+    public void BuyVehicle(){
         BuyButt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                buyFrame();
 
-                buyVehicleAndPicture(real_index);
-                show_myAgency();
 
             }
         });
     }
 
+
+
+
+
+
+    ///////////////////////////
 
     /**
      Changes the flag displayed in the GUI by creating a new panel with buttons
