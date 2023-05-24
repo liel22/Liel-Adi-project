@@ -48,6 +48,18 @@ public class Myframe
         return repaired;
     }
 
+    public JScrollPane get_scroll()
+    {
+        return ourScroll;
+
+    }
+    public JPanel get_panel()
+    {
+        return detailsPanel;
+
+    }
+
+
     public void TestDrive_frame(int real_index,Vehicle[] vehicle_arr)
     {
         frame.setTitle("Test panel");
@@ -132,22 +144,27 @@ public class Myframe
     }
 
     public void removePanel(){
-        if(detailsPanel != null){
+        if(detailsPanel != null)
+        {
             frame.remove(detailsPanel);
         }
 
+    }
+    public void clearFrame(JFrame frame) {
+        Container contentPane = frame.getContentPane();
+        contentPane.removeAll();
+        contentPane.revalidate();
+        contentPane.repaint();
     }
 
     public void Inventory_frame(Vehicle[] vehicle_arr,ImageIcon[] picture_arr) {
         //frame.remove();
         //removePanel();
         //frame.setLayout(null);
+        removePanel();
         frame.setTitle("Inventory");
         frame.setSize(550, 550);
 
-        detailsPanel=new JPanel();
-        //detailsPanel.setBackground(backGroundColor);
-        detailsPanel.setLayout(new GridLayout(vehicle_arr.length, 1));
 
         //clearPanel();
         //mainPanel = new JPanel();
@@ -174,6 +191,8 @@ public class Myframe
 //            });
             detailsPanel.add(temp_button);
         }
+
+
         ourScroll = new JScrollPane(detailsPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         ourScroll.setBounds(130, 70, 290, 370);
         JLabel inventory_Label=new JLabel("Inventory Report:");
@@ -205,9 +224,13 @@ public class Myframe
 
 
         frame.setVisible(true);
-        frame.repaint();
+        //frame.repaint();
 
 
 }
+
+
+
+
 
 }

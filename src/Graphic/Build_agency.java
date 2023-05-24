@@ -1642,7 +1642,16 @@ public class Build_agency extends JFrame {
         inventoryBut.setFocusable(false);
         inventoryBut.setFont(new Font("Comic Sans",Font.BOLD,17));
         //Cbutt.setBorder(BorderFactory.createEtchedBorder());
+
         inventoryBut.addActionListener(e->show_inventory());
+
+
+
+
+
+
+
+
         CENTER_PANEL.add(inventoryBut);
 
         vehicle_scrolling_panel();
@@ -1663,22 +1672,40 @@ public class Build_agency extends JFrame {
     }
     public void show_inventory(){
 
-        Myframe inventoryFrame=new Myframe();
-        inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
-        flagInventory=1;
+        inventoryFrame=new Myframe();
+
+
+
         inventoryFrame.getFrame().addFocusListener(new FocusListener() {
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e)
+            {
+                inventoryFrame.clearFrame(inventoryFrame.getFrame());
                 inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
-                System.out.println("inventory focus");
 
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e)
+            {
 
             }
         });
+
+        flagInventory=1;
+//        inventoryFrame.getFrame().addFocusListener(new FocusListener() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                inventoryFrame.Inventory_frame(vehicle_arr,picture_arr);
+//                System.out.println("inventory focus");
+//
+//            }
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//
+//            }
+//        });
 //        inventoryFrame.getFrame().addFocusListener(new FocusListener() {
 //            @Override
 //            public void focusGained(FocusEvent e) {
@@ -1691,9 +1718,6 @@ public class Build_agency extends JFrame {
 //
 //            }
 //        });
-
-
-
 
     }
 
@@ -1828,28 +1852,17 @@ public class Build_agency extends JFrame {
         Myframe frame1=new Myframe();
         frame1.Buy_frame(chosen_icon);
 
+
         frame1.Yes_butt.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==frame1.Yes_butt){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(e.getSource()==frame1.Yes_butt)
+                {
                     buyVehicleAndPicture(real_index);
                     frame1.getFrame().dispose();
-                    //show_myAgency();
-                    addFocusListener(new FocusListener() {
-                        @Override
-                        public void focusGained(FocusEvent e) {
-                            show_myAgency();
-                            System.out.println("Buy_vehicle");
+                    show_myAgency();
 
-                        }
-
-                        @Override
-                        public void focusLost(FocusEvent e) {
-
-                        }
-                    });{
-
-                    }
 
                 }
             }
