@@ -30,6 +30,7 @@ public class Myframe
         frame.setLayout(null);
         frame.setBackground(new Color(0, 67, 105, 255));
         frame.setVisible(true);
+        System.out.println("liel ha gever");
 
     }
 
